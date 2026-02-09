@@ -215,13 +215,130 @@ vec.clear();          // {}
 
 ---
 
+## � Input/Output in Vectors
+
+### Taking User Input
+```cpp
+int n;
+cout << "Enter number of elements: ";
+cin >> n;
+
+vector<int> vec;
+vec.reserve(n);  // Optional: Pre-allocate memory for efficiency
+
+for (int i = 0; i < n; i++) {
+    int x;
+    cin >> x;
+    vec.push_back(x);
+}
+```
+
+### Displaying Output
+```cpp
+// Method 1: Using index
+for (int i = 0; i < vec.size(); i++) {
+    cout << vec[i] << " ";
+}
+
+// Method 2: Using for-each loop
+for (int val : vec) {
+    cout << val << " ";
+}
+```
+
+---
+
+## 🧮 Common Vector Operations
+
+### 1. Sum of All Elements
+```cpp
+int sumOfElements(const vector<int>& vec) {
+    int sum = 0;
+    for (int i = 0; i < vec.size(); i++) {
+        sum += vec[i];
+    }
+    return sum;
+}
+```
+
+**Time Complexity:** O(n)  
+**Space Complexity:** O(1)
+
+---
+
+### 2. Find Maximum and Minimum
+```cpp
+void min_and_max(const vector<int>& vec) {
+    int max = vec[0];
+    int min = vec[0];
+    
+    for (int i = 0; i < vec.size(); i++) {
+        if (vec[i] > max) {
+            max = vec[i];
+        }
+        if (vec[i] < min) {
+            min = vec[i];
+        }
+    }
+    
+    cout << "Maximum: " << max << " Minimum: " << min << endl;
+}
+```
+
+**Time Complexity:** O(n)  
+**Space Complexity:** O(1)
+
+---
+
+### 3. Count Even Numbers
+```cpp
+int countEven(const vector<int>& vec) {
+    int count = 0;
+    for (int i = 0; i < vec.size(); i++) {
+        if (vec[i] % 2 == 0) {
+            count++;
+        }
+    }
+    return count;
+}
+```
+
+**Time Complexity:** O(n)  
+**Space Complexity:** O(1)
+
+---
+
+### 4. Remove All Occurrences of a Value
+```cpp
+void removeOcc(vector<int>& vec, int x) {
+    for (auto it = vec.begin(); it != vec.end(); ) {
+        if (*it == x) {
+            it = vec.erase(it);  // erase returns next iterator
+        } else {
+            ++it;
+        }
+    }
+}
+```
+
+**Time Complexity:** O(n)  
+**Space Complexity:** O(1)
+
+**Note:** Use iterators for removing elements while traversing to avoid skipping elements.
+
+---
+
 ## 📝 Practice Problems
 
 1. ✅ Find sum of all elements in a vector
 2. ✅ Find maximum and minimum in a vector
-3. ✅ Remove duplicates from a vector
-4. ✅ Rotate vector left/right by k positions
-5. ✅ Merge two sorted vectors
+3. ✅ Count even/odd numbers in a vector
+4. ✅ Remove all occurrences of a specific value
+5. ✅ Reverse a vector
+6. ✅ Linear search in vector
+7. ⬜ Remove duplicates from a vector
+8. ⬜ Rotate vector left/right by k positions
+9. ⬜ Merge two sorted vectors
 
 ---
 
@@ -231,7 +348,8 @@ vec.clear();          // {}
 - Vector of pairs
 - STL Algorithms with vectors (sort, reverse, find)
 - Vector capacity vs size
+- Binary search in vectors
 
 ---
 
-*Last Updated: February 7, 2026*
+*Last Updated: February 9, 2026*
