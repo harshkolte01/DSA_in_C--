@@ -48,24 +48,30 @@ public:
     void nextPermutation(vector<int>& nums) {
         int pivot = -1;
         int n = nums.size();
+        
+        // Step 1: Find pivot from right
         for (int i = n - 2; i >= 0; i--) {
             if (nums[i] < nums[i + 1]) {
                 pivot = i;
                 break;
             }
-            if (pivot == -1) {
-                reverse(nums.begin(), nums.end());
-                return;
-            }
         }
-
+        
+        // Step 2: If no pivot found, array is largest permutation
+        if (pivot == -1) {
+            reverse(nums.begin(), nums.end());
+            return;
+        }
+        
+        // Step 3: Find element just larger than pivot from right
         for (int i = n - 1; i > pivot; i--) {
             if (nums[i] > nums[pivot]) {
                 swap(nums[i], nums[pivot]);
                 break;
             }
         }
-
+        
+        // Step 4: Reverse everything after pivot
         int i = pivot + 1, j = n - 1;
         while (i <= j) {
             swap(nums[i++], nums[j--]);
